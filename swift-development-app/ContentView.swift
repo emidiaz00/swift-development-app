@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var show = false
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        Button(action: {
+          show = true
+        }) {
+            Text("Login")
+        }.alert(isPresented: $show, content: {
+            Alert(title: Text("Titulo"), message: Text("Tu mensaje aqui"), dismissButton: .default(Text("Aceptar")))
+        })
     }
 }
 
