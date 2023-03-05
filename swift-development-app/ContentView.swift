@@ -19,6 +19,20 @@ struct ContentView: View {
     }
 }
 struct compactDesign: View {
+    let number = "1155956072"
+    let message = "How are you?"
+    
+    func sendMessage() {
+        let sms = "sms:\(number)&body=\(message)"
+        guard let stringSms = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return  }
+        UIApplication.shared.open(URL.init(string: stringSms)!, options: [:], completionHandler: nil)
+    }
+    
+    func sendCall() {
+        guard let numberCall = URL(string: "tel://\(number)") else { return  }
+        UIApplication.shared.open(numberCall)
+    }
+    
     var body: some View {
         ZStack {
             Color.indigo.ignoresSafeArea(.all)
@@ -35,13 +49,13 @@ struct compactDesign: View {
                     .bold()
                 HStack {
                     Button(action: {
-                        
+                        sendCall()
                     }) {
                         Image(systemName: "phone")
                             .modifier(button())
                     }
                     Button(action: {
-                        
+                        sendMessage()
                     }) {
                         Image(systemName: "message.fill")
                             .modifier(button())
