@@ -10,13 +10,19 @@ import SwiftUI
 struct ContentView: View {
     @State private var show = false
     var body: some View {
-        Button(action: {
-          show = true
-        }) {
-            Text("Login")
-        }.alert(isPresented: $show, content: {
-            Alert(title: Text("Titulo"), message: Text("Tu mensaje aqui"), dismissButton: .default(Text("Aceptar")))
-        })
+        ZStack {
+            Color.red.ignoresSafeArea(.all)
+            HStack {
+                Image("appstore").resizable()
+                    .frame(width: 100,
+                           height: 100,
+                           alignment: .center)
+                Text("Hello World")
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                    .bold()
+            }
+        }
     }
 }
 
